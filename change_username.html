@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script>
+          function changeUser() {
+            const url=`https://badapi.metype.repl.co/api/users/${sessionStorage.getItem("token")}/set/user/${$('.user').val()}`;
+            $.ajax({
+              url : url,
+              type:"GET",
+              success: function(result){
+                window.location.href = "index.html";
+              },
+              error: function(error){
+                console.error("Error " + error)
+                window.location.href = "login.html";
+              }
+            })
+          }
+      $(document).ready(function(){
+        if(sessionStorage.getItem("token") == undefined)
+          window.location.href = "login.html";
+        $('.changeUser').click(changeUser)
+
+
+        $('.user').keyup(e => {
+            if(e.keyCode == 13) changeUser();
+        });
+      })
+    </script>
+    <title>Login Page</title>
+  </head>
+  <body class="loginPage">
+    <h1>Change Username</h1>
+    <div class = "loginBlock">
+      <input class ="user loginItem" placeholder="Username"></input>
+      <div class="loginBtns">
+        <button class="changeUser loginItem" id="login">Change Username</button>
+      </div>
+    </div>
+  </body>
+</html>

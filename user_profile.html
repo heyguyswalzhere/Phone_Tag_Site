@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Blank Page</title>
+  <link type="text/css" rel="stylesheet" href="style.css"/>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="script.js"></script>
+		<meta charset="utf-8"/>
+    <script>
+      $(document).ready(async function(){
+        populateHeader("user_profile.html")
+        let user = await getUser(sessionStorage.getItem("user"));
+        $(".profile").html(user.user +"'s Profile");
+        $(".user").html("Username: "+user.user);
+        $(".img").attr("src",user.profile_image);
+      });
+    </script>
+	</head>
+	<body>
+	  <main>
+	    <h1 class="profile">Profile</h1>
+	    <img class="img" alt= "User Icon" width="200px"/>
+	    <p class="user"></p>
+	    
+	  </main>
+	  <footer>
+	    
+	  </footer>
+	</body>
+</html>

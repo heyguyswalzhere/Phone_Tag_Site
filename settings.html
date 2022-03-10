@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+ <head>
+		<title>Hometag - Settings </title>
+    <script src="https://cdn.alloyui.com/3.0.1/aui/aui-min.js"></script>
+		<meta charset="utf-8"/>
+  <link type="text/css" rel="stylesheet" href="style.css"/>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="script.js"></script>
+    <script>
+      let cropper = null;
+      $(document).ready(function(){
+        populateHeader("settings.html")
+        $('.changeuser').click(() => {
+          window.location.href = "change_username.html";
+        });
+        $('.clearstats').click(() => {
+          window.location.href = "clear_stats.html";
+        });
+        $('.changepics').click(() => {
+          $('#file-input').click();
+        });
+        $('#file-input').on('change', function (evt) {
+          var tgt = evt.target || window.event.srcElement,
+              files = tgt.files;
+
+          // FileReader support
+          if (FileReader && files && files.length) {
+              var fr = new FileReader();
+              fr.onload = function () {
+                $('.myImage').attr('height',window.innerHeight *.7);
+                // $('.myImage').attr('src',fr.result)
+                setMaxSize(fr.result);
+                $('.imageManip').addClass('show');
+                cropper = YUI().use(
+                  'aui-image-cropper',
+                  function(Y) {
+                    cropper = new Y.ImageCropper(
+                      {
+                        resizable: true,
+                        srcNode: ".myImage"
+                      }
+                    )
+                    cropper.render();
+                    let preX = 0;
+                    let preY = 0;
+                    setInterval(() => {
+                      cropper.set("cropWidth", cropper.get("cropHeight"))
+                    });
+                  }
+                );
+              }
+              fr.readAsDataURL(files[0]);
+          }
+        });
+
+        $('.acceptBtn').click(() => {
+          cropImg();
+          location.reload();
+          cropper.destroy();
+          $('.imageManip').removeClass('show');
+        })
+        $('.denyBtn').click(() => {
+          cropper.destroy();
+          location.reload();
+          $('.imageManip').removeClass('show');
+        })
+
+        function map(value, 
+                    istart, 
+                    istop, 
+                    ostart, 
+                    ostop) {
+            return Math.floor(ostart + (ostop - ostart) * ((value - istart) / (istop - istart)));
+        }
+
+        function setMaxSize(imageData){
+  
+          let canvas = document.getElementById('canvas');
+
+          const ctx = canvas.getContext('2d');
+
+          var image = new Image();
+          image.src = imageData;
+          
+          image.onload = function(){
+            let height = window.innerHeight *.7;
+            let width = map(image.width,0,image.height,0,height);
+
+            canvas.height = height;
+            canvas.width = width;
+
+            console.log(canvas);
+
+            ctx.drawImage(image, 0, 0, width, height);
+            
+            $('.myImage').attr('src',canvas.toDataURL())
+          }
+        }
+
+        function cropImg(){
+  
+          let canvas = document.getElementById('canvas');
+
+          canvas.width = 128;
+          canvas.height = 128;
+
+          const ctx = canvas.getContext('2d');
+
+          var image = new Image();
+          image.src = $('.myImage').attr("src");
+
+          let height = window.innerHeight *.7;
+          let width = map(image.width,0,image.height,0,height);
+
+          image.width = width;
+          image.height = height;
+
+          console.log(
+            image.width,
+            image.height,
+            cropper.get("region").x,
+            cropper.get("region").y,
+            cropper.get("region").width,
+            cropper.get("region").height);
+          
+          image.onload = function(){
+            ctx.drawImage(image,
+            cropper.get("region").x,
+            cropper.get("region").y,
+            cropper.get("region").width,
+            cropper.get("region").height, 0,0, 128, 128);
+
+            // ctx.drawImage(image, 0, 0, image.width, image.height, 0, 0, 128,128);
+
+            setData("profile_image",canvas.toDataURL());
+          }
+        }
+      });
+    </script>
+ </head>
+	<body>
+	 <body id="frontPage">
+	  <main>
+	   <nav> 
+	    <ul class="list">
+        <h2 class="listTitle">Settings</h2>
+       <li class="listItem clickable changeuser"> Change Username </li>
+	     <li class="listItem clickable clearstats"> Clear Your Stats </li>
+	     <li class="listItem clickable changepics"> Change Profile Picture </li>
+	     <li class="listItem"> Sound Effect Toggle</li>
+	     <li class="listItem"> Voice Prompt Options</li>
+	     <li class="listItem"> Style Options </li>
+	     <li class="listItem"> <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"> Settings Explination Video</a></li>
+	     <li class="listItem"> Delete settings page (irreversable) </li>
+	     <li class="listItem"> Delete Application</li>  
+	    </ul> 
+	   </nav>
+    <input id="file-input" type="file" name="name" style="display: none;" />
+    <div class="imageManip myImageCropper">
+      <div class="imageHolder">
+        <img class="myImage"></img>
+      </div>
+      <button class="acceptBtn" id="login">Accept</button>
+      <button class="denyBtn" id="signup">Cancel</button>
+    </div>
+	  </main>
+    <canvas id="canvas" width="128" height="128"
+    style="display:none;"
+     ></canvas>
+	 <footer>
+	  <h3> <center> <a> <a href="https://en.wikipedia.org/wiki/Back_(disambiguation)"> Back </a> </center> </h3>
+	 </footer>
+  </body>
+</html>
+ 

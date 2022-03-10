@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script>
+          function tryLogin() {
+            const url=`https://badapi.metype.repl.co/api/users/login?user=${$('.user').val()}&pass=${$('.pass').val()}`;
+            $.ajax({
+              url : url,
+              type:"GET",
+              success: function(result){
+                console.log(result.token)
+                sessionStorage.setItem('token', result.token)
+                window.location.href = "index.html";
+              },
+              error: function(error){
+                $('.loginError').addClass('loginErrorShown');
+                console.error("Error " + error)
+              }
+            })
+          }
+      $(document).ready(function(){
+        $('#login').click(tryLogin)
+
+        $('.pass').keyup(e => {
+            if(e.keyCode == 13) tryLogin();
+        });
+
+        $('.user').keyup(e => {
+            if(e.keyCode == 13) $('.pass').focus();
+        });
+
+        $('#signup').click(function(){
+          let url=`https://badapi.metype.repl.co/api/users/login?user=${$('.user').val()}&pass=${$('.pass').val()}`;
+          $.ajax({
+            url : url,
+            type:"GET",
+            success: function(result){
+              console.log(result.token)
+              sessionStorage.setItem('token', result.token)
+              window.location.href = "index.html";
+            },
+            error: function(error){
+              url=`https://badapi.metype.repl.co/api/users/create?user=${$('.user').val()}&pass=${$('.pass').val()}`;
+              $.ajax({
+                url : url,
+                type:"GET",
+                success: function(result){
+                  console.log(result.token)
+                  sessionStorage.setItem('token', result.token)
+                  window.location.href = "index.html";
+                },
+                error: function(error){
+                  $('.loginError').addClass('loginErrorShown');
+                  console.error("Error " + error)
+                }
+              })
+            }
+          })
+        })
+      })
+    </script>
+    <title>Login Page</title>
+  </head>
+  <body class="loginPage">
+    <h1>Login</h1>
+    <div class = "loginBlock">
+      <p class="loginError">Incorrect username or password.</p>
+      <input class ="user loginItem" placeholder="Username"></input>
+      <input class ="pass loginItem" placeholder="Password" type="password"></input>
+      <div class="loginBtns">
+        <button class="loginBtn loginItem" id="login">Login</button>
+        <button class="loginBtn signUpBtn loginItem" id="signup">Sign Up</button>
+      </div>
+    </div>
+  </body>
+</html>

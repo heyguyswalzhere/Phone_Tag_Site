@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      <link type="text/css" rel="stylesheet" href="style.css"/>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+      <script src="script.js"></script>
+      <script>
+          $(function(){
+            populateHeader("users.html")
+            let users;
+            let url=`https://badapi.metype.repl.co/api/users/get/users`;
+              $.ajax({
+                url : url,
+                type:"GET",
+                success: function(result){
+                  users = result;
+                  let list = $("#missionList")
+                  for(let i=0;i<users.length;i++){
+                      $("#missionList").append($("<li></li>").addClass("listItem").addClass("clickable").click(() => {
+                        sessionStorage.setItem("user",users[i].user);
+                        window.location.href = `user_profile.html`
+                      })
+                      .append($("<div></div>").append($("<h3></h3>").text(users[i].user)
+                      .append($("<img></img>").attr("src",users[i].profile_image).addClass("missionImageLeft")))))
+                  }
+                },
+                error: function(error){
+                  console.error("Error " + error)
+                  window.location.href = "login.html";
+                  sessionStorage.setItem("token",undefined);
+                }
+              })
+          }); 
+      </script>
+    </head>
+    <body>
+        <ul class ="list" id="missionList">
+            <h2 class="listTitle">Users</h2>
+        </ul>
+    </body>
+</html>

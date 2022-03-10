@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script>
+          function clearStats() {
+            const url=`https://badapi.metype.repl.co/api/users/${sessionStorage.getItem("token")}/cleardata`;
+            $.ajax({
+              url : url,
+              type:"GET",
+              success: function(result){
+                window.location.href = "index.html";
+              },
+              error: function(error){
+                console.error("Error " + error)
+                window.location.href = "login.html";
+              }
+            })
+          }
+      $(document).ready(function(){
+        if(sessionStorage.getItem("token") == undefined)
+          window.location.href = "login.html";
+        $('.clearStats').click(clearStats)
+      })
+    </script>
+    <title>Login Page</title>
+  </head>
+  <body class="loginPage">
+    <h1>Are You Sure?</h1>
+    <div class = "loginBlock">
+      <div class="loginBtns">
+        <button class="clearStats loginItem" id="login">Clear Stats</button>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,344 @@
+h1,h2,h3,h4,h5,h6 {
+    text-align: center;
+}
+
+body {
+    background-color: #2F3133;
+    z-index: 0;
+    font-family: 'Outfit', sans-serif;
+    color: white;
+}
+
+.nav {
+    display:inline-block;
+    text-decoration:none;
+    color: white;
+    font-size:x-small;
+    margin-right:1%;
+    margin-top:-1%;
+    transition: color 100ms linear;
+}
+
+.nav:hover {
+    color: silver;
+    transition: color 100ms linear;
+}
+
+.userProfile {
+  background-color:hsl(202, 15%, 20%);
+  display: inline-flex;
+  flex-flow: row;
+  width:100%;
+  color: white;
+  margin-right:1%;
+  margin-top:-1%;
+}
+
+.current {
+    color: rgb(103, 96, 146);
+}
+
+.current:hover {
+    color: rgb(103, 96, 146);
+}
+
+.header {
+    background-color: hsl(210, 4%, 21%);
+    position:sticky;
+    left:0;
+    right:0;
+    top:0;
+    z-index: 1;
+    margin-top:0;
+    padding-top:.5%;
+    border-bottom: 1;
+    border-top:0;
+    border-left:0;
+    border-right:0;
+    border-style: solid;
+    margin-bottom:2%;
+    border-color:black;
+}
+
+.list {
+    list-style: none;
+    background: hsl(202, 15%, 20%);
+    padding-left: 0px;
+    padding-right: 0px;
+    margin:0;
+    width: 100%;
+    border-radius: 15px;
+}
+
+.listTitle {
+padding-top:1%;
+padding-bottom:1%;
+}
+
+.listItem {
+    background-color: #1E2529;
+    border-color: 0;
+    padding-bottom: 1rem;
+    padding-top: 1rem;
+    text-align:center;
+    border:black;
+    border-style: solid;
+    border-width:1px;
+    transition: background-color 250ms linear;
+    position: relative;
+}
+
+.listItem:hover {
+    /* background-color: #aaaabb; */
+    background-color:#2F3133;
+    transition: background-color 250ms linear;
+}
+
+.missionImageLeft {
+    position: absolute;
+    top: 0;
+    left: 0;
+    min-height: 100%;
+    max-height: 100%;
+}
+
+.missionImageRight {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-height: 100%;
+    max-height: 100%;
+}
+
+.checkedMission {
+    background-color: #363a41
+}
+
+.checkedMission:hover {
+    background-color: #545a5f
+}
+
+.cancelledMission {
+    background-color: #3d1212
+}
+
+.cancelledMission:hover {
+    background-color: #551a1a
+}
+
+.completedMissions {
+    background-color: #9c9419
+}
+
+.completedMissions:hover {
+    background-color: #c7bb1a
+}
+
+.description {
+    width:fit-content;
+    margin: auto;
+}
+
+  .strike { position:relative; }
+  .strike::after {
+    content:' ';
+    position:absolute;
+    top:50%; left:-3%;
+    width:0; height:10px;
+    opacity:80%;
+    transform:translateY(-50%);
+    background:repeat-x url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB0AAAAKAQMAAAByjsdvAAAABlBMVEUAAADdMzNrjRuKAAAAAXRSTlMAQObYZgAAADdJREFUCNdj+MMABP8ZGCQY/h9g+MHw/AHzDwbGD+w/GBhq6h8wMNj/b2BgkP8HVMMPUsn+gQEAsTkQNRVnI4cAAAAASUVORK5CYII=);
+    animation: strike .5s linear .3s 1 forwards;
+  }
+  @keyframes strike { to { width: 106%; } }
+
+  .toRemove {
+    opacity: 0%;
+    -webkit-transition: opacity 1000ms ease;
+    transition: opacity 1000ms ease;
+}
+
+.loginBlock {
+  display: flex;
+  flex-direction: column;
+  width:33%;
+  padding: 3%;
+  background-color: #363a41;
+  border-radius: 15px;
+}
+
+.loginPage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  flex-direction: column;
+}
+
+.loginItem {
+  margin-top:1%;
+  margin-bottom:1%;
+  width: 100%;
+  padding: 12px 8px;
+  box-sizing: border-box;
+  border: 3px solid #ccc;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  outline: none;
+  border-radius: 4px;
+}
+
+.loginItem:focus {
+  border: 3px solid rgb(126, 134, 173);
+  border-radius: 10px;
+}
+
+.loginBtn {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 15px 15px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin:4px;
+  cursor: pointer;
+  margin-top:20%;
+  margin-bottom:0;
+  width:50%;
+}
+
+.clearStats {
+  background-color: #ff4444;
+  border: none;
+  color: white;
+  padding: 15px 15px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin:4px;
+  cursor: pointer;
+  margin-top:20%;
+  margin-bottom:0;
+}
+
+.changeUser {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 15px 15px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin:4px;
+  cursor: pointer;
+  margin-top:20%;
+  margin-bottom:0;
+}
+
+.signUpBtn {
+  background-color: rgb(103, 129, 139);
+}
+
+.loginBtn:focus {
+  border:none; 
+}
+
+.loginBtn:hover {
+  background-color: #4dcc51;
+}
+
+.signUpBtn:hover {
+  background-color: rgb(120, 162, 179);
+}
+
+.loginBtns {
+  display: flex;
+  flex-direction: row;
+}
+
+.loginError {
+  display:none;
+  background-color:rgba(200,50,50,50);
+  border-radius: 4px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: rgba(255,100,100,50);
+  text-align:center;
+  margin-top:-1%;
+  color:#ffe6e6;
+}
+
+.loginErrorShown {
+  display:block;
+  transition: display 500ms linear;
+}
+
+.clickable:hover {
+  cursor: pointer;
+}
+
+.imageManip {
+  width: 90vw;
+  height: 90vh;
+  background-color: rgba(103, 129, 139, 0.9);
+  display:none;
+  position: fixed;
+  top:0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  z-index:2;
+  justify-content:center;
+}
+
+.imageHolder {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.show {
+  display: flex;
+}
+
+.acceptBtn {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 15px 15px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top:20%;
+  margin-bottom:0;
+  position:absolute;
+  bottom:0;
+  right:0;
+  width:25%;
+}
+
+.denyBtn {
+  background-color: #ff4444;
+  border: none;
+  color: white;
+  padding: 15px 15px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top:20%;
+  margin-bottom:0;
+  position:absolute;
+  bottom:0;
+  left:0;
+  width:25%;
+}

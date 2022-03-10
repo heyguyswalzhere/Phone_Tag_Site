@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<head>
+		<title>Character statistics </title>
+    <link type="text/css" rel="stylesheet" href="style.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="script.js"></script>
+    <script>
+      $(document).ready(function(){
+        populateHeader("user_stats.html")
+        if(sessionStorage.getItem("token") == undefined)
+          window.location.href = "login.html";
+        placeData("user","user","$value")
+        placeData("stats_tags","tags","You have tagged $value players!")
+        placeData("stats_tagged","tagged","You have been tagged $value times!")
+        placeData("stats_playtime","playtime","You have been playing for $value hours this game!")
+        placeData("stats_points","points","Your score is $value!")
+        placeData("logic_competitor","competitor","Your biggest rival is currently $value!")
+        placeData("location_current","location","You're currently at $value!")
+        placeImage("profile_image","profileImage")
+      })
+    </script>
+	</head>
+	 <body id="frontPage">
+    <div class="userProfile">
+      <img src="https://img.rawpixel.com/s3fs-private/rawpixel_images/website_content/pf-icon4-jir2062-por-01.jpg?w=1200&h=1200&dpr=1&fit=clip&crop=default&fm=jpg&q=75&vib=3&con=3&usm=15&cs=srgb&bg=F4F4F3&ixlib=js-2.2.1&s=a094da6bb16622e7f7a79860448fc7d1" alt="User Profile Image" width="75px" class="profileImage"/>
+      <div style="width:3%"></div>
+      <p class="user"></p>
+    </div>
+	  <body id="frontPage">
+      <ul class="list">
+        <h1 class="listTitle">Your Statistics</h1>
+   	    <li class="tags listItem"></li>
+   	    <li class="tagged listItem"></li>
+   	    <li class="playtime listItem"></li>
+   	    <li class="points listItem"></li>
+   	    <li class="competitor listItem"></li>
+   	    <li class="location listItem"></li>
+     </body>
+    </html>
+	    
+	    
+	    
+	    
+	    
